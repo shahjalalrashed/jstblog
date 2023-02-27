@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}
+Login page
+{% endblock %}
+
+{% block main %}
+<div class="col-sm-4 offset-sm-4">
+
+  <h2 class="text-center ">
+    <strong>Login Form</strong>
+  </h2>
+
+  <!--Card content-->
+  <div class="card-body px-lg-5 pt-0">
+
+    <!-- Form -->
+    <form method="post">
+ {% csrf_token %}
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">E-mail / Username</label>
+        <input type="text" name="username" id="email"  class="form-control">        
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="passwd">Password</label>
+        <input type="password" name="password" id="passwd"  class="form-control">        
+      </div>
+ <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+      <div>
+        <div>
+          <!-- Forgot password -->
+          <p >Do you
+              <a  href="">Forgot password?</a>
+          </p>
+        </div>
+      </div>
+
+      <p class="" >Not a member?
+        <a href="{% url 'blogsignup' %}">Register</a>
+      </p>
+        {% if messages %}
+        {% for m in messages %}
+            <p class="text-center text-danger">{{ m }}</p>
+        {% endfor %}
+
+        {% endif %}
+
+
+    </form>
+
+
+  </div>
+
+</div>
+{% endblock %}
+
+
+
+
+    
