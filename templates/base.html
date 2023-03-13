@@ -65,7 +65,9 @@
     <script src="{% static 'js/main.js'%}"></script>
     <script>
         {% block js %}
-  
+        $(document).ready(function(){
+            $('.dropdown-toggle').dropdown();
+        });
         {% endblock %}
     </script>        
     

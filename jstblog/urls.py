@@ -13,4 +13,6 @@ urlpatterns = [
     path('signup',views.jstsignup,name="blogsignup"),
     path('login',views.jstlogin,name="bloglogin"),    
     path('logout',views.jstlogout,name="bloglogout"),    
+    path('editprof',views.jsteditprof,name="blogeditprof"),    
+    path('changepass',views.jstchangepass,name="blogchangepass"),    
 ]

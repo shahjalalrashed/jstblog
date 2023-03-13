@@ -62,3 +62,9 @@ def jstlogin(request):
 def jstlogout(request):   
     auth_logout(request)
     return redirect('bloglogin')
+
+def jsteditprof(request):
+    return render(request,"editprofile.html")
+
+def jstchangepass(request):
+    return render(request,"changepassword.html")

@@ -4,7 +4,39 @@
         color: #fff;
         font-weight: 500;
         user-select: none;
-      }
+        position: relative;
+    }
+    .unme .dropdown-toggle {
+        text-decoration:none;
+    }
+    .unme .dropdown-menu {
+        left: auto;
+        right: 0px;
+        margin-top: 0px;
+        background-color: #1E2024;
+    }
+    .unme .dropdown-menu .dropdown-item {
+        color: #FFCC00;
+    }
+    .unme .dropdown-menu .dropdown-item:hover, .unme .dropdown-menu .dropdown-item:focus {
+        color: #FFCC00;
+        background-color: #1E2024;
+    }
+    @media only screen and (max-width:767px){
+        .unme .dropdown-toggle {
+            display:block;
+        }
+        .unme .dropdown-menu {
+            left: 0px;
+            right: auto;
+            position:relative;
+            background-color: #1E2024;
+        }
+        .unme .dropdown-menu .dropdown-item {
+            color: #FFCC00;
+            padding: 0.25rem 1.5rem 0.25rem 0rem;
+        }
+    }
 </style>
 
 <!-- Navbar Start -->
@@ -25,7 +57,13 @@
             </div>
             {% if user.is_authenticated %}
                 <a href="{% url 'bloglogout' %}" class="nav-item nav-link {% if request.get_full_path == "/logout" %} active {% endif %}" ><span class="fas fa-sign-out-alt"></span> Logout</a> 
-                <div class="unme"><span class="fas fa-user"></span> {{request.user}}</div>
+                <div class="unme">
+                    <a class="dropdown-toggle" href="javascript:void(0);" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false"> <span class="fas fa-user"></span> {{request.user}} </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="{% url 'blogeditprof' %}">Edit profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'blogchangepass' %}">Change Password</a></li>
+                    </ul>
+                </div>
             {%else %}
                 <a href="{% url 'blogsignup' %}" class="nav-item nav-link {% if request.get_full_path == "/signup" %} active {% endif %}" ><span class="fas fa-user-plus"></span> Sign Up</a>
                 <a href="{% url 'bloglogin' %}" class="nav-item nav-link {% if request.get_full_path == "/login" %}active{% endif %}"><span class="fas fa-sign-in-alt"></span> Login</a>
