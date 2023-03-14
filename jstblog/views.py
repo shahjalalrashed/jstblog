@@ -8,6 +8,7 @@ from django.contrib.auth import logout as auth_logout, login as auth_login, auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm 
 from django.contrib.auth.models import User
+from bs4 import BeautifulSoup
 
 # Create your views here.
 
@@ -68,3 +69,41 @@ def jsteditprof(request):
 
 def jstchangepass(request):
     return render(request,"changepassword.html")
+
+
+
+
+
+def movreq(request):
+    url = "https://www.imdb.com/chart/moviemeter/"
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, "html.parser")
+    table = soup.find('table',  {'class': 'chart full-width'})
+    rows = table.find_all('tr')
+    
+    minatlst=[]
+    for row in rows:
+        movies = []
+        image = row.find('img')
+        if image:
+            movies.append(image['src'])
+            movies.append(image['alt'])            
+            minatlst.append(movies)
+    print(minatlst)        
+    return render(request, "movies.html", {'movies': minatlst})
+
+
+def cbreq(request):
+    url = "https://www.cricbuzz.com/"
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, "html.parser")
+    li = soup.find('li',  {'class': 'cb-view-all-ga cb-match-card cb-bg-white'})
+    rows = li.find_all('a')
+    print(rows)
+    
+    for row in rows:
+        card = row.find('a')
+        if card:
+            
+           
+    return render(request, "crickbuzzcopy.html")

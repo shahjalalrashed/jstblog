@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+<div class="container">
+    <h1 class='text-center'> Movies List </h1>  
+    <div class="row">
+      <div class="col-sm-8 offset-sm-2">  
+        <ul class="list-group">
+          {% for movie in movies %}
+          {% comment %} {% for movie in movies|slice:"5:16:2" %} {% endcomment %}
+            {% comment %} {% if  forloop.counter0 < 10 %} {% endcomment %}
+            <li class="list-group-item">
+              <img src="{{ movie.0 }}"/> {{ movie.1 }}   
+            </li>
+            {% comment %} {% endif %}           {% endcomment %}
+          {% endfor %}
+        </ul>  
+      </div>
+    </div>
+</div>
+{% endblock %}

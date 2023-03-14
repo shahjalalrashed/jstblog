@@ -15,4 +15,6 @@ urlpatterns = [
     path('logout',views.jstlogout,name="bloglogout"),    
     path('editprof',views.jsteditprof,name="blogeditprof"),    
     path('changepass',views.jstchangepass,name="blogchangepass"),    
+    path('movies',views.movreq,name="blogmovies"),    
+    path('cricbc',views.cbreq,name="blogcb"),    
 ]
